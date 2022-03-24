@@ -2,7 +2,7 @@
 
 Final Project for the Associate's degree of System Development in SENAI CIMATEC Salvador - BA
 
-## 🤝 Equipe
+## 🤝 Our team
 
 <table>
   <tr>
