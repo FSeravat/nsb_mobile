@@ -1,4 +1,4 @@
-https://img.shields.io/github/last-commit/FSeravat/nsb_mobile
+![GitHub Last Commit](https://img.shields.io/github/last-commit/FSeravat/nsb_mobile)
 # Nosso Sangue Bom
 
 Final Project for the Associate's degree of System Development in SENAI CIMATEC Salvador - BA
