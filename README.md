@@ -1,5 +1,7 @@
-//Badges
+<!--- Badges --->
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/FSeravat/nsb_mobile)
+
+<!--- Body --->
 
 # Nosso Sangue Bom
 
