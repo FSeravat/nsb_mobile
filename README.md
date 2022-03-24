@@ -12,7 +12,7 @@
 <table>
   <tr>
     <td align="center">
-      <a href="#">
+      <a href="https://github.com/TiagoFlores-76">
         <img src="https://avatars.githubusercontent.com/u/77364713?v=4" width="100px;" alt="Photo of Tiago de Souza Flores"/><br>
         <sub>
           <b>Tiago de Souza Flores</b>
@@ -28,7 +28,7 @@
       </a>
     </td>
     <td align="center">
-      <a href="#">
+      <a href="https://github.com/joelber2011">
         <img src="https://avatars.githubusercontent.com/u/101759896?v=4" width="100px;" alt="Photo of Joelber Miranda dos Santos"/><br>
         <sub>
           <b>Joelber Miranda dos Santos</b>
