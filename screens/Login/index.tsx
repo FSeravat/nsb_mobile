@@ -7,6 +7,17 @@ export default function Login({/*navigation*/ }) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [check, setCheck] = useState({email:false, password:false});
+
+    function validateEmail(value:string):boolean{
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    function validatePasswor(value:string):boolean{
+        const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+        return re.test(value);
+    }
 
     return (
         <View style={styles.container}>
