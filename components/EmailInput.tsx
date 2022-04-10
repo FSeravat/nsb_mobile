@@ -20,7 +20,7 @@ const EmailInput = () =>{
             <Input
                 label= "E-mail"
                 //inputStyle = { styles.input }
-                inputContainerStyle = {{ borderBottomWidth: 0 }
+                inputContainerStyle = {{ borderBottomWidth: 0 }}
                 onChangeText = { value => setEmail(value) }
                 keyboardType = "email-address"
             />

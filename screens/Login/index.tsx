@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Input, Button, Text, Image } from 'react-native-elements';
+import { Input, Text, Image } from 'react-native-elements';
 import { styles } from './styles'
+import  ComponentButton  from '../../components/Button';
 
 export default function Login({/*navigation*/ }) {
 
@@ -49,20 +50,24 @@ export default function Login({/*navigation*/ }) {
             </Text>
             
 
-            <Button
+            {/* <Button
                 title="Entrar"
                 containerStyle={styles.elementsContainer}
                 buttonStyle={styles.mainButton}
-            />
+            /> */}
 
-            <Button
+            {/* <Button
                 title="Criar uma nova conta"
                 type="outline"
                 buttonStyle={styles.secundaryButton}
                 containerStyle={styles.elementsContainer}
                 titleStyle={{ color: '#D24258' }}
                 /*onPress={()=>navigation.navigate("RecoverPassword")}*/
-            />
+            /> */}
+
+            <ComponentButton title="teste"/>
+
+
 
         </View>
 
