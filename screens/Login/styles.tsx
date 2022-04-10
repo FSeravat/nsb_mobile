@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     input:{
         padding:5,
         borderStyle:'solid',
-        borderWidth:3,
+        borderWidth:2,
         borderRadius:5,
         borderColor:'#C4CED6'
     },
@@ -27,7 +27,10 @@ export const styles = StyleSheet.create({
     },
 
     secundaryButton:{
-        borderColor:'#EEBCC3'
+        borderColor:'#EEBCC3',
+        borderStyle:'solid',
+        borderWidth:2,
+        borderRadius:5
     },
 
     fieldTitle:{
