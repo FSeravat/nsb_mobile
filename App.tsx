@@ -12,8 +12,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown:false}}>
         <Stack.Screen name="CreateNewAccount" component={CreateNewAccount}/>
-        <Stack.Screen name="UpdateProfile" component={UpdateProfile}/>
-        <Stack.Screen name="Login" component={Login}/>
+        {/* <Stack.Screen name="UpdateProfile" component={UpdateProfile}/>
+        <Stack.Screen name="Login" component={Login}/> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

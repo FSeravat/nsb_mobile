@@ -32,7 +32,6 @@ export default function Login({/*navigation*/ }) {
 
             <Button
                 title="Entrar"
-                main={true}
             />
 
             <Button
