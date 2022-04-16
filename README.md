@@ -21,7 +21,7 @@
     </td>
     <td align="center">
       <a href="https://github.com/JeuMelhor">
-        <img src="https://avatars.githubusercontent.com/u/37885454?v=4" width="100px;" alt="Photo of Jéssica Almeida Santos Melhor"/><br>
+        <img src="https://avatars.githubusercontent.com/u/86540800?v=4" width="100px;" alt="Photo of Jéssica Almeida Santos Melhor"/><br>
         <sub>
           <b>Jéssica Almeida Santos Melhor</b>
         </sub>
