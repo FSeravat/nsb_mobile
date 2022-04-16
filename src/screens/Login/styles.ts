@@ -4,12 +4,9 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        alignItems: 'stretch',
+        alignItems: 'center',
         justifyContent: 'center',
         fontWeight:'bold',
         padding:25
-    },
-    contentContainer: {
-        paddingVertical: 20
     }
   })

@@ -6,7 +6,7 @@ type Props = ButtonProps & {
   main?: true | false
 }
 
-export default function Button ({main, ...rest }: Props = {main: true}) {
+export default function Button ({main=true, ...rest }: Props) {
   return (
       <ElementsButton
         type={ main ? 'solid':'outline'}
