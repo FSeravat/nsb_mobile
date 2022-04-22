@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, ScrollView} from 'react-native';
 import {Text} from 'react-native-elements';
 import { styles } from './styles'
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import CheckBox from '../../components/CheckBox';
+import Overlay from '../../components/Overlay';
 
-export default function CreateNewAccount({/*navigation*/ }) {
+export default function CreateNewAccount({navigation}) {
+    const [overlay, setOverlay] = useState(false);
+    const toLoginScreen = () => {
+        navigation.navigate("Login");
+    }
     return (
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -46,9 +52,19 @@ export default function CreateNewAccount({/*navigation*/ }) {
                     label="Confirmação de Senha"
                     type="password"
                 />
+
+                <CheckBox
+                    title="Aceite de termos"
+                />
         
                 <Button
                     title="Cadastrar no APP"
+                    onPress={()=>setOverlay(true)}
+                />
+
+                <Overlay 
+                    isVisible={overlay}
+                    pressFunction={toLoginScreen}
                 />
             </ScrollView>
         </View>
