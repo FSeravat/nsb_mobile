@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './src/screens/Login';
 import UpdateProfile from './src/screens/UpdateProfile';
 import CreateNewAccount from './src/screens/CreateNewAccount';
+import SliderIntro from './src/screens/SliderIntro';
+import DonateRequest from './src/screens/DonateRequest';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,11 +14,13 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator 
         screenOptions={{headerShown:false}}
-        initialRouteName="Login"
+        initialRouteName="DonateRequest"
       >
+        <Stack.Screen name="SliderIntro" component={SliderIntro}/>
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="CreateNewAccount" component={CreateNewAccount}/>
         <Stack.Screen name="UpdateProfile" component={UpdateProfile}/>
+        <Stack.Screen name="DonateRequest" component={DonateRequest}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
