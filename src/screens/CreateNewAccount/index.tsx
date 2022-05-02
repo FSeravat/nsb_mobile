@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import CheckBox from '../../components/CheckBox';
 import Overlay from '../../components/Overlay';
 
-export default function CreateNewAccount({navigation}) {
+export default function CreateNewAccount({ navigation }) {
     const [overlay, setOverlay] = useState(false);
     const toLoginScreen = () => {
         navigation.navigate("Login");
