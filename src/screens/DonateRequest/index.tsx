@@ -6,9 +6,9 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Dropdown from "../../components/Select";
 
-export default function DonateRequest({ navigation }) {
-  const toLoginScreen = () => {
-    navigation.navigate("Login");
+export default function DonateRequest({ route, navigation }) {
+  const navigateTo = () => {
+    navigation.navigate("Requests");
   };
   const bloodType = [
     { label: "A+", value: "A+" },
@@ -39,11 +39,31 @@ export default function DonateRequest({ navigation }) {
       >
         Solicitar doação
       </Text>
-      <Input label="Receptor" />
-      <Dropdown data={bloodType} label="Tipo sanguíneo" />
-      <Dropdown data={bloodBank} label="Banco de sangue" />
-
-      <Button title="Enviar notificação" onPress={toLoginScreen} />
+      <Input
+        label="Receptor"
+        value={route.params == undefined ? "" : route.params.name}
+      />
+      <Dropdown
+        data={bloodType}
+        label="Tipo sanguíneo"
+        value={route.params == undefined ? "" : route.params.bloodType}
+      />
+      <Dropdown
+        data={bloodBank}
+        label="Banco de sangue"
+        value={route.params == undefined ? "" : route.params.bloodBank}
+      />
+      <Input
+        label="Data Inicial"
+        type="data"
+        value={route.params == undefined ? "" : route.params.startDate}
+      />
+      <Input
+        label="Data Final"
+        type="data"
+        value={route.params == undefined ? "" : route.params.finalDate}
+      />
+      <Button title="Enviar notificação" onPress={navigateTo} />
     </View>
   );
 }

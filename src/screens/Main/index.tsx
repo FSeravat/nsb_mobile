@@ -22,8 +22,11 @@ export default function DonateRequest({ navigation }) {
   const toUpdateScreen = () => {
     navigation.navigate("UpdateProfile");
   };
-  const toDonateRequest = () => {
-    navigation.navigate("DonateRequest");
+  const toRequests = () => {
+    navigation.navigate("Requests");
+  };
+  const toLocation = () => {
+    navigation.navigate("Location");
   };
   return (
     <View>
@@ -145,10 +148,12 @@ export default function DonateRequest({ navigation }) {
           style={{ borderWidth: 2, borderColor: "#9EADBA", marginVertical: 5 }}
         />
         <View style={styles.footerContainer}>
-          <TouchableOpacity onPress={toDonateRequest}>
+          <TouchableOpacity onPress={toRequests}>
             <Card type="notification"></Card>
           </TouchableOpacity>
-          <Card></Card>
+          <TouchableOpacity onPress={toLocation}>
+            <Card></Card>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
