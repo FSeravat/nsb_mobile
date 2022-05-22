@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     dropdown:{
         alignSelf:'center',
         height:45,
-        width:320,
+        width:'95%',
         padding:5,
         borderStyle:'solid',
         borderWidth:2,
