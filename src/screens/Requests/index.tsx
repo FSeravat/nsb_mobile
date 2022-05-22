@@ -11,25 +11,25 @@ export default function Resquests({ navigation }) {
   const [arrayData, setArrayData] = useState([
     {
       bloodType: "O+",
-      name: "Jessica Melhor",
-      bloodBank: "STS",
-      startDate: "30/05/2022",
-      finalDate: "30/06/2022",
-    },
-    {
-      bloodType: "B+",
+      name: "Joelber Santos",
       bloodBank: "Hemoba",
-      name: "Diego Lincoln",
-      startDate: "25/05/2022",
-      finalDate: "25/06/2022",
+      startDate: "23/05/2022",
+      finalDate: "23/06/2022",
     },
-    {
-      bloodType: "A+",
-      name: "Felipe Costa Tavares",
-      bloodBank: "Hemoba",
-      startDate: "19/05/2022",
-      finalDate: "19/07/2022",
-    },
+    // {
+    //   bloodType: "B+",
+    //   bloodBank: "Hemoba",
+    //   name: "Diego Lincoln",
+    //   startDate: "25/05/2022",
+    //   finalDate: "25/06/2022",
+    // },
+    // {
+    //   bloodType: "A+",
+    //   name: "Felipe Costa Tavares",
+    //   bloodBank: "Hemoba",
+    //   startDate: "19/05/2022",
+    //   finalDate: "19/07/2022",
+    // },
   ]);
   return (
     <View style={styles.container}>

@@ -7,10 +7,24 @@ import Button from "../../components/Button";
 import Dropdown from "../../components/Select";
 
 export default function DonateRequest({ route, navigation }) {
+  const [name, setName] =
+    route.params == undefined ? useState("") : useState(route.params.name);
+  const [bloodBank, setBloodBank] =
+    route.params == undefined
+      ? useState("Hemoba")
+      : useState(route.params.bloodBank);
+  const [bloodType, setBloodType] =
+    route.params == undefined
+      ? useState("A+")
+      : useState(route.params.bloodType);
+  const [startDate, setStartDate] =
+    route.params == undefined ? useState("") : useState(route.params.startDate);
+  const [finalDate, setFinalDate] =
+    route.params == undefined ? useState("") : useState(route.params.finalDate);
   const navigateTo = () => {
     navigation.navigate("Requests");
   };
-  const bloodType = [
+  const selectBloodType = [
     { label: "A+", value: "A+" },
     { label: "A-", value: "A-" },
     { label: "B+", value: "B+" },
@@ -21,7 +35,7 @@ export default function DonateRequest({ route, navigation }) {
     { label: "O-", value: "O-" },
   ];
 
-  const bloodBank = [
+  const selectBloodBank = [
     { label: "Hemoba", value: "Hemoba" },
     { label: "STS", value: "STS" },
   ];
@@ -41,27 +55,32 @@ export default function DonateRequest({ route, navigation }) {
       </Text>
       <Input
         label="Receptor"
-        value={route.params == undefined ? "" : route.params.name}
+        value={name}
+        onChangeText={(value) => setName(value)}
       />
       <Dropdown
-        data={bloodType}
+        data={selectBloodType}
         label="Tipo sanguíneo"
-        value={route.params == undefined ? "" : route.params.bloodType}
+        value={bloodType}
+        onChange={(value: any) => setBloodType(value.value)}
       />
       <Dropdown
-        data={bloodBank}
+        data={selectBloodBank}
         label="Banco de sangue"
-        value={route.params == undefined ? "" : route.params.bloodBank}
+        value={bloodBank}
+        onChange={(value: any) => setBloodBank(value.value)}
       />
       <Input
         label="Data Inicial"
         type="data"
-        value={route.params == undefined ? "" : route.params.startDate}
+        value={startDate}
+        onChangeText={(value) => setStartDate(value)}
       />
       <Input
         label="Data Final"
         type="data"
-        value={route.params == undefined ? "" : route.params.finalDate}
+        value={finalDate}
+        onChangeText={(value) => setFinalDate(value)}
       />
       <Button title="Enviar notificação" onPress={navigateTo} />
     </View>

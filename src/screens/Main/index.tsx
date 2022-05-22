@@ -16,9 +16,9 @@ import Card from "../../components/Card";
 
 export default function DonateRequest({ navigation }) {
   const [able, setAble] = useState(true);
-  const [name, setName] = useState("Felipe Costa Tavares");
+  const [name, setName] = useState("Carolina Almeida Souza");
   const [bloodType, setbloodType] = useState("A+");
-  const [qtdDonate, setqtdDonate] = useState(15);
+  const [qtdDonate, setqtdDonate] = useState(12);
   const toUpdateScreen = () => {
     navigation.navigate("UpdateProfile");
   };
@@ -135,13 +135,11 @@ export default function DonateRequest({ navigation }) {
           contentContainerStyle={{ paddingHorizontal: 25 }}
           style={styles.notificationContainer}
         >
+          <Notification description="Joelber Santos solicita sangue do tipo O+ a ser doado no hemocentro Hemoba até o dia 23/06/2022." />
           <Notification
             image={require("../../images/doação.jpg")}
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+            description="Hemoba pede ajuda para elevar o estoque de sangue do tipo A+."
           />
-          <Notification />
-          <Notification />
-          <Notification />
         </ScrollView>
         <Divider
           orientation="vertical"
