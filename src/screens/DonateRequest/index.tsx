@@ -74,13 +74,19 @@ export default function DonateRequest({ route, navigation }) {
         label="Data Inicial"
         type="data"
         value={startDate}
-        onChangeText={(value) => setStartDate(value)}
+        onChangeText={(value) => {
+          if (value.length == 2 || value.length == 5) value += "/";
+          setStartDate(value);
+        }}
       />
       <Input
         label="Data Final"
         type="data"
         value={finalDate}
-        onChangeText={(value) => setFinalDate(value)}
+        onChangeText={(value) => {
+          if (value.length == 2 || value.length == 5) value += "/";
+          setFinalDate(value);
+        }}
       />
       <Button title="Enviar notificação" onPress={navigateTo} />
     </View>

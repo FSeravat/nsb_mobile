@@ -23,21 +23,25 @@
     "expo": "~44.0.0",
     "expo-status-bar": "~1.2.0",
     "expo-updates": "~0.11.7",
+    "jquery": "^3.6.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-app-intro-slider": "^4.0.4",
     "react-native-element-dropdown": "^1.8.10",
     "react-native-elements": "^3.4.2",
+    "react-native-geocoding": "^0.5.0",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-maps": "^0.31.1",
     "react-native-picker-select": "^8.0.4",
     "react-native-web": "0.17.1",
     "react-navigation-stack": "^2.10.4",
-    "undefined": "@mui/material/Select"
+    "undefined": "@mui/material/Select",
+    "expo-location": "~14.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@types/jquery": "^3.5.14",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
     "typescript": "~4.3.5"

@@ -17,7 +17,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{ headerShown: false }}
-        initialRouteName="DonateRequest"
+        initialRouteName="SliderIntro"
       >
         <Stack.Screen name="SliderIntro" component={SliderIntro} />
         <Stack.Screen name="Login" component={Login} />

@@ -13,6 +13,7 @@ import { Switch } from "@rneui/themed";
 import { Divider } from "react-native-elements";
 import Notification from "../../components/Notification";
 import Card from "../../components/Card";
+import Constants from "expo-constants";
 
 export default function DonateRequest({ navigation }) {
   const [able, setAble] = useState(true);
@@ -29,7 +30,7 @@ export default function DonateRequest({ navigation }) {
     navigation.navigate("Location");
   };
   return (
-    <View>
+    <View style={{ backgroundColor: "white", flex: 1 }}>
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <Text
