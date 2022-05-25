@@ -9,6 +9,7 @@ import DonateRequest from "./src/screens/DonateRequest";
 import Main from "./src/screens/Main";
 import Location from "./src/screens/Location";
 import Requests from "./src/screens/Requests";
+import Notification from "./src/screens/Notification";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ export default function App() {
         <Stack.Screen name="DonateRequest" component={DonateRequest} />
         <Stack.Screen name="Location" component={Location} />
         <Stack.Screen name="Requests" component={Requests} />
+        <Stack.Screen name="Notification" component={Notification} />
       </Stack.Navigator>
     </NavigationContainer>
   );
