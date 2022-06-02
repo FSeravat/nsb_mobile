@@ -22,7 +22,7 @@ export default function DonateRequest({ route, navigation }) {
   const [finalDate, setFinalDate] =
     route.params == undefined ? useState("") : useState(route.params.finalDate);
   const navigateTo = () => {
-    navigation.navigate("Requests");
+    navigation.navigate("Requests", true);
   };
   const selectBloodType = [
     { label: "A+", value: "A+" },

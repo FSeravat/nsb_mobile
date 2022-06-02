@@ -4,19 +4,11 @@ import { styles } from "./styles";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 
-export default function Resquests({ navigation }) {
+export default function ResquestsVazio({ navigation }) {
   const toDonateRequest = () => {
     navigation.navigate("DonateRequest");
   };
-  const [requests, setRequests] = useState([
-    {
-      bloodType: "O+",
-      name: "Joelber Santos",
-      bloodBank: "Hemoba",
-      startDate: "23/05/2022",
-      finalDate: "23/06/2022",
-    },
-  ]);
+  const [requests, setRequests] = useState([]);
 
   return (
     <View style={styles.container}>

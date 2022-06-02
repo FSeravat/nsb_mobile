@@ -5,14 +5,14 @@ import { styles } from "./styles";
 import TextInput from "../../components/Input";
 import Button from "../../components/Button";
 
+import { useAuth } from "../../hooks/auth";
+
 export default function Login({ navigation }) {
   const newAccount = () => {
     navigation.navigate("CreateNewAccount");
   };
 
-  const mainScreen = () => {
-    navigation.navigate("Main");
-  };
+  const { signIn } = useAuth();
 
   return (
     <View style={styles.container}>
@@ -33,7 +33,15 @@ export default function Login({ navigation }) {
         Esqueceu a senha?
       </Text>
 
-      <Button title="Entrar" onPress={mainScreen} />
+      <Button
+        title="Entrar"
+        onPress={() =>
+          signIn({
+            login: "ovo@ovo.com",
+            password: "biscoito",
+          })
+        }
+      />
 
       <Button title="Criar uma nova conta" main={false} onPress={newAccount} />
     </View>

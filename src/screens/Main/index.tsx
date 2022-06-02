@@ -15,16 +15,23 @@ import Notification from "../../components/Notification";
 import Card from "../../components/Card";
 import Constants from "expo-constants";
 
+import { useAuth } from "../../hooks/auth";
+
 export default function DonateRequest({ navigation }) {
   const [able, setAble] = useState(true);
   const [name, setName] = useState("Carolina Almeida Souza");
   const [bloodType, setbloodType] = useState("A+");
   const [qtdDonate, setqtdDonate] = useState(12);
+
+  const { user, signOut } = useAuth();
+
   const toUpdateScreen = () => {
-    navigation.navigate("UpdateProfile");
+    // navigation.navigate("UpdateProfile");
+
+    signOut();
   };
   const toRequests = () => {
-    navigation.navigate("Requests");
+    navigation.navigate("ResquestsVazio");
   };
   const toLocation = () => {
     navigation.navigate("Location");
@@ -42,7 +49,7 @@ export default function DonateRequest({ navigation }) {
               paddingRight: 15,
             }}
           >
-            {name}
+            {user.name}
           </Text>
           <Text
             onPress={toUpdateScreen}
@@ -81,7 +88,7 @@ export default function DonateRequest({ navigation }) {
               textAlign: "center",
             }}
           >
-            {bloodType}
+            {user.blood_type}
           </Text>
         </View>
         <Divider

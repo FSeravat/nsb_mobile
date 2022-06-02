@@ -16,6 +16,9 @@ export default function CreateNewAccount({ navigation }) {
   const toLoginScreen = () => {
     navigation.navigate("Login");
   };
+  const validateForm = () => {
+    toLoginScreen();
+  };
   const gender = [
     { label: "Masculino", value: "m" },
     { label: "Feminino", value: "f" },
@@ -55,7 +58,7 @@ export default function CreateNewAccount({ navigation }) {
 
         <Button title="Cadastrar no APP" onPress={() => setOverlay(true)} />
 
-        <Overlay isVisible={overlay} pressFunction={toLoginScreen} />
+        <Overlay isVisible={overlay} pressFunction={validateForm} />
 
         <PrivacyPolicy
           isVisible={showPrivacyPolicy}

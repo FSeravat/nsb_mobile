@@ -6,12 +6,12 @@ import { Divider } from "react-native-elements";
 
 export default function Notification({ navigation }) {
   const data = {
-    bloodType: "A+",
+    bloodType: "O+",
     bloodBank: "HEMOBA",
     adress: "LADEIRA DO HOSPITAL GERAL, BROTAS",
     startDate: "25/05/2022",
-    finalDate: "25/06/2022",
-    name: "FELIPE COSTA TAVARES",
+    finalDate: "23/06/2022",
+    name: "JOELBER SANTOS",
   };
   return (
     <View style={styles.container}>
