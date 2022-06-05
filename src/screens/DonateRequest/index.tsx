@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { View } from "react-native";
 import { Text } from "react-native-elements";
 import { styles } from "./styles";
-import Input from "../../components/Input";
+import Input from "../../components/Input_Unform";
 import Button from "../../components/Button";
-import Dropdown from "../../components/Select";
+import Picker from "../../components/Picker_Unform";
+import ArrowBack from "../../components/BackButton";
+
+import { SubmitHandler, FormHandles } from "@unform/core";
+import { Form as FormComponent } from "@unform/mobile";
+
+interface FormData {
+  name: string;
+  email: string;
+}
 
 export default function DonateRequest({ route, navigation }) {
   const [name, setName] =
@@ -39,8 +48,15 @@ export default function DonateRequest({ route, navigation }) {
     { label: "Hemoba", value: "Hemoba" },
     { label: "STS", value: "STS" },
   ];
+
+  const formRef = useRef<FormHandles>(null);
+  const handleSubmit: SubmitHandler<FormData> = (data) => {
+    console.log(formRef.current?.getData());
+  };
+
   return (
     <View style={styles.container}>
+      <ArrowBack />
       <Text
         style={{
           alignSelf: "flex-start",
@@ -53,42 +69,29 @@ export default function DonateRequest({ route, navigation }) {
       >
         Solicitar doação
       </Text>
-      <Input
-        label="Receptor"
-        value={name}
-        onChangeText={(value) => setName(value)}
-      />
-      <Dropdown
-        data={selectBloodType}
-        label="Tipo sanguíneo"
-        value={bloodType}
-        onChange={(value: any) => setBloodType(value.value)}
-      />
-      <Dropdown
-        data={selectBloodBank}
-        label="Banco de sangue"
-        value={bloodBank}
-        onChange={(value: any) => setBloodBank(value.value)}
-      />
-      <Input
-        label="Data Inicial"
-        type="data"
-        value={startDate}
-        onChangeText={(value) => {
-          if (value.length == 2 || value.length == 5) value += "/";
-          setStartDate(value);
-        }}
-      />
-      <Input
-        label="Data Final"
-        type="data"
-        value={finalDate}
-        onChangeText={(value) => {
-          if (value.length == 2 || value.length == 5) value += "/";
-          setFinalDate(value);
-        }}
-      />
-      <Button title="Enviar notificação" onPress={navigateTo} />
+      <FormComponent ref={formRef} onSubmit={handleSubmit}>
+        <Input name="name" label="Receptor" />
+        <Picker
+          placeHolder="A+"
+          name="bloodType"
+          items={selectBloodType}
+          label="Tipo sanguíneo"
+        />
+        <Picker
+          placeHolder="Hemoba"
+          name="bloodBank"
+          items={selectBloodBank}
+          label="Banco de sangue"
+        />
+        <Input name="startDate" label="Data Inicial" type="data" />
+        <Input name="finalDate" label="Data Final" />
+        <View style={{ marginVertical: 10 }}>
+          <Button
+            title="Enviar notificação"
+            onPress={() => formRef.current?.submitForm()}
+          />
+        </View>
+      </FormComponent>
     </View>
   );
 }

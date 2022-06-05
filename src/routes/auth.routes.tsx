@@ -14,7 +14,6 @@ export default function Routes() {
       <Auth.Screen name="SliderIntro" component={SliderIntro} />
       <Auth.Screen name="Login" component={Login} />
       <Auth.Screen name="CreateNewAccount" component={CreateNewAccount} />
-      {/* // TODO: Esqueceu a senha? */}
     </Auth.Navigator>
   );
 }

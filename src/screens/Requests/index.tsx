@@ -3,6 +3,7 @@ import { ScrollView, View, Text } from "react-native";
 import { styles } from "./styles";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
+import ArrowBack from "../../components/BackButton";
 
 export default function Resquests({ navigation }) {
   const toDonateRequest = () => {
@@ -21,6 +22,7 @@ export default function Resquests({ navigation }) {
   return (
     <View style={styles.container}>
       <ScrollView>
+        <ArrowBack />
         {requests.map((a, i) => {
           return (
             <Card

@@ -17,7 +17,6 @@ export default function Input({ type = "text", ...rest }: Props) {
     <ElementsInput
       inputStyle={styles.input}
       inputContainerStyle={{ borderBottomWidth: 0 }}
-      //keyboardType={type === 'email' ? 'email-address' :'default'}
       keyboardType={keyboardType(type)}
       secureTextEntry={type === "password" ? true : false}
       {...rest}

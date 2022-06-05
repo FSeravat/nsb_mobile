@@ -85,11 +85,11 @@ const AuthProvider: React.FC = ({ children }) => {
     const token = "123123123123123123";
 
     const user = {
-      name: "Lula",
-      email: "aquaman@hotmail.com",
-      cpf: "123123123123",
+      name: "Felipe Costa Tavares",
+      email: "felipecostatavares@gmail.com",
+      cpf: "01639155554",
       blood_type: "A+",
-      birth_date: "1990-05-22",
+      birth_date: "1995-03-20",
     } as UserProps; // Remover essa forçagem de tipagem
 
     await AsyncStorage.multiSet([

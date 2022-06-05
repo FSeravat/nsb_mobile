@@ -1,4 +1,5 @@
 import React from "react";
+import { View } from "react-native";
 import {
   CheckBox as ElementsCheckBox,
   CheckBoxProps,
@@ -11,12 +12,15 @@ type Props = CheckBoxProps & {
 
 export default function CheckBox({ ...rest }: Props) {
   return (
-    <ElementsCheckBox
-      checkedColor="#D3455B"
-      uncheckedColor="#C4CED6"
-      textStyle={{ color: "#D3455B", textDecorationLine: "underline" }}
-      containerStyle={styles.checkBox}
-      {...rest}
-    />
+    <View>
+      <ElementsCheckBox
+        checkedColor="#D3455B"
+        uncheckedColor="#C4CED6"
+        textStyle={{ color: "#D3455B", textDecorationLine: "underline" }}
+        containerStyle={styles.checkBox}
+        center
+        {...rest}
+      />
+    </View>
   );
 }

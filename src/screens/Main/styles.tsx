@@ -1,17 +1,16 @@
 import { StyleSheet } from "react-native";
-import Constants from "expo-constants";
 
 export const styles = StyleSheet.create({
   header: {
     backgroundColor: "#E9A2AD",
-    marginTop: Constants.statusBarHeight,
+    marginTop: 0,
     minHeight: 100,
     paddingBottom: 15,
     flexDirection: "row",
     justifyContent: "space-around",
   },
   headerLeft: {
-    width: "50%",
+    width: "70%",
   },
   switchContainer: {
     alignItems: "center",

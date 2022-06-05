@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
 
     elementsContainer:{
-        padding:10,
+        marginVertical:5,
         width:'100%'
     },
 

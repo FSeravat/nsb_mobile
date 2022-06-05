@@ -14,6 +14,7 @@ import { Divider } from "react-native-elements";
 import Notification from "../../components/Notification";
 import Card from "../../components/Card";
 import Constants from "expo-constants";
+import { SimpleLineIcons } from "@expo/vector-icons";
 
 import { useAuth } from "../../hooks/auth";
 
@@ -26,12 +27,10 @@ export default function DonateRequest({ navigation }) {
   const { user, signOut } = useAuth();
 
   const toUpdateScreen = () => {
-    // navigation.navigate("UpdateProfile");
-
-    signOut();
+    navigation.navigate("UpdateProfile");
   };
   const toRequests = () => {
-    navigation.navigate("ResquestsVazio");
+    navigation.navigate("Requests");
   };
   const toLocation = () => {
     navigation.navigate("Location");
@@ -43,7 +42,7 @@ export default function DonateRequest({ navigation }) {
           <Text
             style={{
               color: "#FEFAFB",
-              fontSize: 20,
+              fontSize: 22,
               paddingTop: 10,
               paddingLeft: 15,
               paddingRight: 15,
@@ -51,18 +50,32 @@ export default function DonateRequest({ navigation }) {
           >
             {user.name}
           </Text>
-          <Text
+          <TouchableOpacity
+            style={{ flexDirection: "row" }}
             onPress={toUpdateScreen}
-            style={{
-              color: "#4B5C6B",
-              fontSize: 20,
-              paddingTop: 10,
-              paddingLeft: 15,
-              textDecorationLine: "underline",
-            }}
           >
-            Editar perfil
-          </Text>
+            <SimpleLineIcons
+              name="settings"
+              size={20}
+              color="#4B5C6B"
+              style={{
+                marginLeft: 15,
+                marginVertical: 15,
+              }}
+            />
+            <Text
+              style={{
+                color: "#4B5C6B",
+                fontSize: 18,
+                paddingTop: 13,
+                paddingLeft: 5,
+                textDecorationLine: "underline",
+                alignSelf: "baseline",
+              }}
+            >
+              Editar perfil
+            </Text>
+          </TouchableOpacity>
         </View>
         <Divider
           orientation="vertical"
@@ -91,11 +104,12 @@ export default function DonateRequest({ navigation }) {
             {user.blood_type}
           </Text>
         </View>
-        <Divider
+        {/* <Divider
           orientation="vertical"
           style={{ borderWidth: 2, borderColor: "#9EADBA", marginTop: 15 }}
-        />
-        <View style={{ flex: 1 }}>
+        /> */}
+        {/* <View style={{ flex: 1, justifyContent: "center" }}>
+          
           <Text
             style={{
               color: "#454754",
@@ -117,7 +131,7 @@ export default function DonateRequest({ navigation }) {
           >
             {qtdDonate}
           </Text>
-        </View>
+        </View> */}
       </View>
       <View>
         <View style={styles.switchContainer}>
@@ -157,9 +171,10 @@ export default function DonateRequest({ navigation }) {
           <TouchableOpacity onPress={toRequests}>
             <Card type="notification"></Card>
           </TouchableOpacity>
-          <TouchableOpacity onPress={toLocation}>
+
+          {/* <TouchableOpacity onPress={toLocation}>
             <Card></Card>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>

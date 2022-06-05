@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Image, Text } from "react-native-elements";
 import { styles } from "./styles";
 import { Divider } from "react-native-elements";
+import ArrowBack from "../../components/BackButton";
 
 export default function Notification({ navigation }) {
   const data = {
@@ -15,6 +16,9 @@ export default function Notification({ navigation }) {
   };
   return (
     <View style={styles.container}>
+      <View style={{ marginBottom: 15 }}>
+        <ArrowBack />
+      </View>
       <View style={styles.card}>
         <View style={styles.containerHeader}>
           <Text style={styles.textHeader}>

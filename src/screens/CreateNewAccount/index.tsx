@@ -1,36 +1,47 @@
-import React, { useState } from "react";
-import { View, ScrollView } from "react-native";
+import React, { useRef, useState } from "react";
+import { SubmitHandler, FormHandles } from "@unform/core";
+import { Form as FormComponent } from "@unform/mobile";
+import Input from "../../components/Input_Unform";
+import { ScrollView, View } from "react-native";
 import { Text } from "react-native-elements";
 import { styles } from "./styles";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
+import Picker from "../../components/Picker_Unform";
 import CheckBox from "../../components/CheckBox";
 import Overlay from "../../components/Overlay";
-import Dropdown from "../../components/Select";
 import PrivacyPolicy from "../../components/PrivacyPolicy";
+import Button from "../../components/Button";
+import ArrowBack from "../../components/BackButton";
+
+interface FormData {
+  name: string;
+  email: string;
+}
+
+const gender = [
+  { label: "Masculino", value: "m" },
+  { label: "Feminino", value: "f" },
+];
 
 export default function CreateNewAccount({ navigation }) {
+  const [checked, setChecked] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
-  const [checked, setChecked] = useState(false);
-  const toLoginScreen = () => {
+  const formRef = useRef<FormHandles>(null);
+  const handleSubmit: SubmitHandler<FormData> = (data) => {
+    console.log(formRef.current?.getData());
     navigation.navigate("Login");
   };
-  const validateForm = () => {
-    toLoginScreen();
-  };
-  const gender = [
-    { label: "Masculino", value: "m" },
-    { label: "Feminino", value: "f" },
-  ];
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+      <ScrollView
+        contentContainerStyle={styles.contentContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        <ArrowBack />
         <Text
           style={{
             alignSelf: "flex-start",
             color: "#283744",
-            paddingLeft: 10,
             paddingBottom: 15,
             paddingTop: 15,
           }}
@@ -38,35 +49,39 @@ export default function CreateNewAccount({ navigation }) {
         >
           Criar Uma Nova Conta
         </Text>
-
-        <Input label="Nome Completo" />
-        <Dropdown data={gender} label="Sexo" />
-        <Input label="E-mail" type="email" />
-        <Input label="CPF" type="cpf" />
-        <Input label="Data de Nascimento" type="data" />
-        <Input label="Tipo Sanguíneo" />
-        <Input label="CEP" type="cep" />
-        <Input label="Senha" type="password" />
-        <Input label="Confirmação de Senha" type="password" />
-
-        <CheckBox
-          title="Aceite de termos"
-          checked={checked}
-          onIconPress={() => setChecked(!checked)}
-          onPress={() => setShowPrivacyPolicy(true)}
-        />
-
-        <Button title="Cadastrar no APP" onPress={() => setOverlay(true)} />
-
-        <Overlay isVisible={overlay} pressFunction={validateForm} />
-
-        <PrivacyPolicy
-          isVisible={showPrivacyPolicy}
-          pressFunction={() => {
-            setShowPrivacyPolicy(false);
-            setChecked(true);
-          }}
-        />
+        <FormComponent ref={formRef} onSubmit={handleSubmit}>
+          <Input name="name" label="Nome Completo" />
+          <Picker placeHolder="m" name="gender" label="Sexo" items={gender} />
+          <Input name="email" label="E-mail" type="email" />
+          <Input name="cpf" label="CPF" type="cpf" />
+          <Input name="birthDate" label="Data de Nascimento" type="data" />
+          <Input name="bloodType" label="Tipo Sanguíneo" />
+          <Input name="cep" label="CEP" type="cep" />
+          <Input name="password" label="Senha" type="password" />
+          <Input
+            name="confirmPassword"
+            label="Confirmação de Senha"
+            type="password"
+          />
+          <CheckBox
+            title="Aceite de termos"
+            checked={checked}
+            onIconPress={() => setChecked(!checked)}
+            onPress={() => setShowPrivacyPolicy(true)}
+          />
+          <Button title="Cadastrar no APP" onPress={() => setOverlay(true)} />
+          <Overlay
+            isVisible={overlay}
+            pressFunction={() => formRef.current?.submitForm()}
+          />
+          <PrivacyPolicy
+            isVisible={showPrivacyPolicy}
+            pressFunction={() => {
+              setShowPrivacyPolicy(false);
+              setChecked(true);
+            }}
+          />
+        </FormComponent>
       </ScrollView>
     </View>
   );

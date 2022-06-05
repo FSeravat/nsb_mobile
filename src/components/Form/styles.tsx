@@ -8,5 +8,8 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         fontWeight:'bold',
         padding:25
+    },
+    contentContainer: {
+        paddingVertical: 20
     }
   })
