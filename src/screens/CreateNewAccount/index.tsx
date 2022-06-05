@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { SubmitHandler, FormHandles } from "@unform/core";
 import { Form as FormComponent } from "@unform/mobile";
 import Input from "../../components/Input_Unform";
+import InputMask from "../../components/InputMask_Unform";
 import { ScrollView, View } from "react-native";
 import { Text } from "react-native-elements";
 import { styles } from "./styles";
@@ -53,10 +54,14 @@ export default function CreateNewAccount({ navigation }) {
           <Input name="name" label="Nome Completo" />
           <Picker placeHolder="m" name="gender" label="Sexo" items={gender} />
           <Input name="email" label="E-mail" type="email" />
-          <Input name="cpf" label="CPF" type="cpf" />
-          <Input name="birthDate" label="Data de Nascimento" type="data" />
+          <InputMask name="cpf" label="CPF" type="cpf" />
+          <InputMask
+            name="birthDate"
+            label="Data de Nascimento"
+            type="datetime"
+          />
           <Input name="bloodType" label="Tipo Sanguíneo" />
-          <Input name="cep" label="CEP" type="cep" />
+          <InputMask name="cep" label="CEP" type="zip-code" />
           <Input name="password" label="Senha" type="password" />
           <Input
             name="confirmPassword"

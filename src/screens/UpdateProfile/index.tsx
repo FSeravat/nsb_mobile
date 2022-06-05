@@ -5,6 +5,7 @@ import { styles } from "./styles";
 import Input from "../../components/Input_Unform";
 import Button from "../../components/Button";
 import Picker from "../../components/Picker_Unform";
+import InputMask from "../../components/InputMask_Unform";
 
 import { MaterialIcons } from "@expo/vector-icons";
 import { useAuth } from "../../hooks/auth";
@@ -73,9 +74,14 @@ export default function UpdateProfile({ navigation }) {
           <Picker placeHolder="m" items={gender} label="Sexo" name="gender" />
           <Input label="Tipo Sanguíneo" name="bloodType" />
           <Input label="E-mail" type="email" name="email" />
-          <Input label="CPF" type="cpf" name="cpf" />
-          <Input label="Data de Nascimento" type="data" name="birthDate" />
-          <Input label="CEP" type="cep" name="cep" />
+
+          <InputMask type="cpf" name="cpf" label="CPF" />
+          <InputMask
+            type="datetime"
+            label="Data de Nascimento"
+            name="birthDate"
+          />
+          <InputMask label="CEP" type="zip-code" name="cep" />
           <Input label="Senha" type="password" name="password" />
           <Input
             label="Confirmação de Senha"

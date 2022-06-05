@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Text } from "react-native-elements";
 import { styles } from "./styles";
 import Input from "../../components/Input_Unform";
+import InputMask from "../../components/InputMask_Unform";
 import Button from "../../components/Button";
 import Picker from "../../components/Picker_Unform";
 import ArrowBack from "../../components/BackButton";
@@ -83,8 +84,8 @@ export default function DonateRequest({ route, navigation }) {
           items={selectBloodBank}
           label="Banco de sangue"
         />
-        <Input name="startDate" label="Data Inicial" type="data" />
-        <Input name="finalDate" label="Data Final" />
+        <InputMask name="startDate" label="Data Inicial" type="datetime" />
+        <InputMask name="finalDate" label="Data Final" type="datetime" />
         <View style={{ marginVertical: 10 }}>
           <Button
             title="Enviar notificação"
