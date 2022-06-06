@@ -1,22 +1,29 @@
-import React, { useRef, useState } from "react";
-import { View } from "react-native";
-import { Text } from "react-native-elements";
-import { styles } from "./styles";
-import Input from "../../components/Input_Unform";
-import InputMask from "../../components/InputMask_Unform";
-import Button from "../../components/Button";
-import Picker from "../../components/Picker_Unform";
-import ArrowBack from "../../components/BackButton";
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { FormHandles, SubmitHandler } from '@unform/core';
+import { Form as FormComponent } from '@unform/mobile';
+import React, { useRef, useState } from 'react';
+import { View } from 'react-native';
+import { Text } from 'react-native-elements';
 
-import { SubmitHandler, FormHandles } from "@unform/core";
-import { Form as FormComponent } from "@unform/mobile";
+import ArrowBack from '../../../components/BackButton';
+import Button from '../../../components/Button';
+import Input from '../../../components/Input_Unform';
+import InputMask from '../../../components/InputMask_Unform';
+import Picker from '../../../components/Picker_Unform';
+import { AppStackParams } from '../../app.routes';
+import { styles } from './styles';
 
 interface FormData {
   name: string;
   email: string;
 }
 
-export default function DonateRequest({ route, navigation }) {
+type DonateRequestProps = NativeStackScreenProps<
+  AppStackParams,
+  "DonateRequest"
+>;
+
+const DonateRequest: React.FC<DonateRequestProps> = ({ route, navigation }) => {
   const [name, setName] =
     route.params == undefined ? useState("") : useState(route.params.name);
   const [bloodBank, setBloodBank] =
@@ -73,13 +80,11 @@ export default function DonateRequest({ route, navigation }) {
       <FormComponent ref={formRef} onSubmit={handleSubmit}>
         <Input name="name" label="Receptor" />
         <Picker
-          placeHolder="A+"
           name="bloodType"
           items={selectBloodType}
           label="Tipo sanguíneo"
         />
         <Picker
-          placeHolder="Hemoba"
           name="bloodBank"
           items={selectBloodBank}
           label="Banco de sangue"
@@ -95,4 +100,6 @@ export default function DonateRequest({ route, navigation }) {
       </FormComponent>
     </View>
   );
-}
+};
+
+export default DonateRequest;

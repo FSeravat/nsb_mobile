@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { View } from "react-native";
-import { Image, Text } from "react-native-elements";
-import { styles } from "./styles";
-import { Divider } from "react-native-elements";
-import ArrowBack from "../../components/BackButton";
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { Divider, Text } from 'react-native-elements';
+
+import ArrowBack from '../../../components/BackButton';
+import { styles } from './styles';
 
 export default function Notification({ navigation }) {
   const data = {

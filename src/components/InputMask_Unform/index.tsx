@@ -1,8 +1,11 @@
-import React, { useState, useCallback, forwardRef } from "react";
-import { TextInputMask, TextInputMaskProps } from "react-native-masked-text";
-import Input from "../Input_Unform";
+import React, { forwardRef, useCallback, useState } from 'react';
+import { TextInputMask, TextInputMaskProps } from 'react-native-masked-text';
 
-const InputMask = ({ type, ...rest }, inputRef: any) => {
+import Input, { InputProps } from './Input';
+
+type InputMaskProps = TextInputMaskProps & Omit<InputProps, "type">;
+
+const InputMask = ({ type, ...rest }: InputMaskProps, inputRef: any) => {
   const [text, setText] = useState("");
   const [rawText, setRawText] = useState("");
 
@@ -14,6 +17,13 @@ const InputMask = ({ type, ...rest }, inputRef: any) => {
   return (
     <TextInputMask
       type={type}
+      options={
+        type === "datetime"
+          ? {
+              format: "DD/MM/YYYY",
+            }
+          : {}
+      }
       includeRawValueInChangeText
       value={text}
       onChangeText={handleChangeText}

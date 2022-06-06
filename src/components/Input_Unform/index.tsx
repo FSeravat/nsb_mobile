@@ -1,15 +1,17 @@
-import React, { useRef, useEffect, useCallback } from "react";
-import { TextInput, TextInputProps, Text } from "react-native";
-import { useField } from "@unform/core";
-import { styles } from "./styles";
+import { useField } from '@unform/core';
+import React, { useEffect, useRef } from 'react';
+import { Text, TextInput, TextInputProps } from 'react-native';
+
+import { styles } from './styles';
 
 interface InputProps extends TextInputProps {
   name: string;
   label: string;
   type?: "text" | "email" | "password" | "cpf" | "data" | "cep";
+  rawText?: string;
 }
 
-interface InputReference extends TextInput {
+interface InputValueReference {
   value: string;
 }
 
@@ -26,58 +28,41 @@ export default function Input({
   onChangeText,
   ...rest
 }: InputProps) {
-  const inputRef = useRef<InputReference>(null);
+  const inputElementRef = useRef<any>(null);
 
-  const { fieldName, registerField, defaultValue = "", error } = useField(name);
-
-  useEffect(() => {
-    if (inputRef.current) inputRef.current.value = defaultValue;
-  }, [defaultValue]);
+  const { registerField, defaultValue = "", fieldName, error } = useField(name);
+  const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
 
   useEffect(() => {
     registerField<string>({
       name: fieldName,
-      ref: inputRef.current,
-      getValue() {
-        if (inputRef.current) return inputRef.current.value;
-
-        return "";
-      },
-      setValue(ref, value) {
-        if (inputRef.current) {
-          inputRef.current.setNativeProps({ text: value });
-          inputRef.current.value = value;
-        }
+      ref: inputValueRef.current,
+      path: "value",
+      setValue(ref: any, value) {
+        inputValueRef.current.value = value;
+        inputElementRef.current.setNativeProps({ text: value });
       },
       clearValue() {
-        if (inputRef.current) {
-          inputRef.current.setNativeProps({ text: "" });
-          inputRef.current.value = "";
-        }
+        inputValueRef.current.value = "";
+        inputElementRef.current.clear();
       },
     });
   }, [fieldName, registerField]);
-
-  const handleChangeText = useCallback(
-    (value: string) => {
-      if (inputRef.current) inputRef.current.value = value;
-
-      if (onChangeText) onChangeText(value);
-    },
-    [onChangeText]
-  );
 
   return (
     <>
       {label && <Text style={styles.text}>{label}</Text>}
 
       <TextInput
-        ref={inputRef}
-        onChangeText={handleChangeText}
+        style={styles.input}
+        ref={inputElementRef}
+        keyboardAppearance="light"
         defaultValue={defaultValue}
         keyboardType={keyboardType(type)}
         secureTextEntry={type === "password" ? true : false}
-        style={styles.input}
+        onChangeText={(value) => {
+          inputValueRef.current.value = value;
+        }}
         {...rest}
       />
     </>

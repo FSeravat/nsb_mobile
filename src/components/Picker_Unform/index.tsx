@@ -1,28 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
-import { View, Text } from "react-native";
-import Picker, { PickerSelectProps } from "react-native-picker-select";
-import { useField } from "@unform/core";
-import { styles } from "./styles";
+import { useField } from '@unform/core';
+import React, { useEffect, useRef, useState } from 'react';
+import { Text, View } from 'react-native';
+import Picker, { PickerSelectProps } from 'react-native-picker-select';
+
+import { styles } from './styles';
 
 interface Props extends Omit<PickerSelectProps, "onValueChange"> {
   name: string;
   label: string;
-  placeHolder: string;
 }
 
-export default function RNPickerSelect({
-  placeHolder,
-  name,
-  label,
-  items,
-  ...rest
-}: Props) {
+export default function RNPickerSelect({ name, label, items, ...rest }: Props) {
   const pickerRef = useRef(null);
-  const {
-    fieldName,
-    registerField,
-    defaultValue = placeHolder,
-  } = useField(name);
+  const { fieldName, registerField, defaultValue } = useField(name);
 
   const [selectedValue, setSelectedValue] = useState(defaultValue);
 
@@ -55,8 +45,8 @@ export default function RNPickerSelect({
           ref={pickerRef}
           value={selectedValue}
           onValueChange={setSelectedValue}
+          placeholder={{ value: undefined, label: "Selecione uma opção" }}
           items={items}
-          placeholder={{}}
           {...rest}
         />
       </View>

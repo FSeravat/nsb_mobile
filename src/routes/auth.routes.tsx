@@ -1,9 +1,17 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import CreateNewAccount from "../screens/CreateNewAccount";
-import Login from "../screens/Login";
-import SliderIntro from "../screens/SliderIntro";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Auth = createNativeStackNavigator();
+import CreateNewAccount from './screens/CreateNewAccount';
+import Login from './screens/Login';
+import SliderIntro from './screens/SliderIntro';
+
+export type AuthStackParams = {
+  SliderIntro: undefined;
+  Login: undefined;
+  CreateNewAccount: undefined;
+  // ForgotPassword: undefined
+};
+
+const Auth = createNativeStackNavigator<AuthStackParams>();
 
 export default function Routes() {
   return (

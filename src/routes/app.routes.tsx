@@ -1,12 +1,20 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import UpdateProfile from "../screens/UpdateProfile";
-import DonateRequest from "../screens/DonateRequest";
-import Main from "../screens/Main";
-import Location from "../screens/Location";
-import Requests from "../screens/Requests";
-import Notification from "../screens/Notification";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const App = createNativeStackNavigator();
+import DonateRequest from './screens/DonateRequest';
+import Main from './screens/Main';
+import Notification from './screens/Notification';
+import Requests from './screens/Requests';
+import UpdateProfile from './screens/UpdateProfile';
+
+export type AppStackParams = {
+  Main: undefined;
+  UpdateProfile: undefined;
+  DonateRequest: undefined;
+  Requests: undefined;
+  Notification: undefined;
+};
+
+const App = createNativeStackNavigator<AppStackParams>();
 
 export default function Routes() {
   return (
@@ -17,7 +25,6 @@ export default function Routes() {
       <App.Screen name="Main" component={Main} />
       <App.Screen name="UpdateProfile" component={UpdateProfile} />
       <App.Screen name="DonateRequest" component={DonateRequest} />
-      <App.Screen name="Location" component={Location} />
       <App.Screen name="Requests" component={Requests} />
       <App.Screen name="Notification" component={Notification} />
     </App.Navigator>

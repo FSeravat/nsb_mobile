@@ -1,28 +1,22 @@
-import React, { useState } from "react";
-import {
-  ScrollView,
-  View,
-  FlatList,
-  SafeAreaView,
-  TouchableOpacityBase,
-  TouchableOpacity,
-} from "react-native";
-import { styles } from "./styles";
-import { Text } from "react-native-elements";
-import { Switch } from "@rneui/themed";
-import { Divider } from "react-native-elements";
-import Notification from "../../components/Notification";
-import Card from "../../components/Card";
-import Constants from "expo-constants";
-import { SimpleLineIcons } from "@expo/vector-icons";
+import { SimpleLineIcons } from '@expo/vector-icons';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Switch } from '@rneui/themed';
+import React, { useState } from 'react';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { Divider, Text } from 'react-native-elements';
 
-import { useAuth } from "../../hooks/auth";
+import Card from '../../../components/Card';
+import Notification from '../../../components/Notification';
+import { useAuth } from '../../../hooks/auth';
+import { AppStackParams } from '../../app.routes';
+import { styles } from './styles';
 
-export default function DonateRequest({ navigation }) {
+const donateImage = require("../../../images/doação.jpg");
+
+type MainProps = NativeStackScreenProps<AppStackParams, "Main">;
+
+const Main: React.FC<MainProps> = ({ navigation }) => {
   const [able, setAble] = useState(true);
-  const [name, setName] = useState("Carolina Almeida Souza");
-  const [bloodType, setbloodType] = useState("A+");
-  const [qtdDonate, setqtdDonate] = useState(12);
 
   const { user, signOut } = useAuth();
 
@@ -31,9 +25,6 @@ export default function DonateRequest({ navigation }) {
   };
   const toRequests = () => {
     navigation.navigate("Requests");
-  };
-  const toLocation = () => {
-    navigation.navigate("Location");
   };
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
@@ -104,34 +95,6 @@ export default function DonateRequest({ navigation }) {
             {user.blood_type}
           </Text>
         </View>
-        {/* <Divider
-          orientation="vertical"
-          style={{ borderWidth: 2, borderColor: "#9EADBA", marginTop: 15 }}
-        /> */}
-        {/* <View style={{ flex: 1, justifyContent: "center" }}>
-          
-          <Text
-            style={{
-              color: "#454754",
-              fontSize: 13,
-              paddingTop: 10,
-              paddingLeft: 5,
-            }}
-          >
-            DOAÇÕES REALIZADAS
-          </Text>
-          <Text
-            style={{
-              color: "#FFFFFF",
-              fontSize: 20,
-              paddingTop: 10,
-              paddingLeft: 5,
-              textAlign: "center",
-            }}
-          >
-            {qtdDonate}
-          </Text>
-        </View> */}
       </View>
       <View>
         <View style={styles.switchContainer}>
@@ -159,8 +122,12 @@ export default function DonateRequest({ navigation }) {
         >
           <Notification description="Joelber Santos solicita sangue do tipo O+ a ser doado no hemocentro Hemoba até o dia 23/06/2022." />
           <Notification
-            image={require("../../images/doação.jpg")}
+            image={donateImage}
             description="Hemoba pede ajuda para elevar o estoque de sangue do tipo A+."
+          />
+          <Notification
+            image={donateImage}
+            description="STS pede ajuda para elevar o estoque de sangue do tipo B+."
           />
         </ScrollView>
         <Divider
@@ -171,12 +138,10 @@ export default function DonateRequest({ navigation }) {
           <TouchableOpacity onPress={toRequests}>
             <Card type="notification"></Card>
           </TouchableOpacity>
-
-          {/* <TouchableOpacity onPress={toLocation}>
-            <Card></Card>
-          </TouchableOpacity> */}
         </View>
       </View>
     </View>
   );
-}
+};
+
+export default Main;

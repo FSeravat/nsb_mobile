@@ -1,12 +1,7 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import api from '../services/api';
 
 type AddressProps = {
   id: string;
@@ -36,7 +31,7 @@ type AuthStateProps = {
 };
 
 type SignInCredentialsProps = {
-  login: string;
+  email: string;
   password: string;
 };
 
@@ -74,23 +69,13 @@ const AuthProvider: React.FC = ({ children }) => {
     loadStorageData();
   }, []);
 
-  const signIn = useCallback(async ({ login, password }) => {
-    // const reponse = await api.post("sessions", {
-    //   login,
-    //   password,
-    // });
+  const signIn = useCallback(async ({ email, password }) => {
+    const response = await api.post("user/sessions", {
+      email,
+      password,
+    });
 
-    // const {token, user} = response.data
-
-    const token = "123123123123123123";
-
-    const user = {
-      name: "Felipe Costa Tavares",
-      email: "felipecostatavares@gmail.com",
-      cpf: "01639155554",
-      blood_type: "A+",
-      birth_date: "1995-03-20",
-    } as UserProps; // Remover essa forçagem de tipagem
+    const { token, user } = response.data;
 
     await AsyncStorage.multiSet([
       ["@nsb:token", token],
