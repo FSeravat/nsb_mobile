@@ -1,8 +1,7 @@
-import React from "react";
-import { styles } from "./styles";
-import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
 
 export default function ArrowBack() {
   const navigation = useNavigation();

@@ -11,7 +11,7 @@ type AddressProps = {
   city: string;
   state: string;
   zip_code: string;
-  neighborhood: string;
+  district: string;
 };
 
 type UserProps = {
@@ -23,6 +23,7 @@ type UserProps = {
   birth_date: string;
   address_id: string;
   address: AddressProps;
+  gender: string;
 };
 
 type AuthStateProps = {

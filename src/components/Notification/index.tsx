@@ -1,13 +1,12 @@
-import React from "react";
-import { TouchableOpacity, View } from "react-native";
-import { Text, Image } from "react-native-elements";
-import { styles } from "./styles";
-import { FontAwesome } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-const defaultImage = require("../../images/logo.jpg");
-import { useNavigation } from "@react-navigation/native";
+import { AntDesign, Entypo, FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { TouchableOpacity, View } from 'react-native';
+import { Image, Text } from 'react-native-elements';
 
+import { styles } from './styles';
+
+const defaultImage = require("../../images/logo.jpg");
 type NotificationProps = {
   image?: any;
   description?: String;
@@ -21,7 +20,12 @@ export default function Notification({
   return (
     <TouchableOpacity onPress={() => navigation.navigate("Notification")}>
       <View style={styles.container}>
-        <Image source={image} style={{ width: 150, height: 100 }}></Image>
+        <Image
+          source={image}
+          style={{ width: 150, height: 100 }}
+          height={undefined}
+          width={undefined}
+        ></Image>
         <View style={styles.newsContainer}>
           <Text style={styles.newsDescription}>{description}</Text>
           <View style={styles.newsShareContainer}>

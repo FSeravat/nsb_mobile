@@ -27,7 +27,7 @@ export default function Resquests({ navigation }) {
     },
     {
       bloodType: "B+",
-      name: "Tiago Flores",
+      name: "Diego Lincoln",
       bloodBank: "Hemoba",
       startDate: "23/05/2022",
       finalDate: "23/06/2022",

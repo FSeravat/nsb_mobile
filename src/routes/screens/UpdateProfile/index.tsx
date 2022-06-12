@@ -12,6 +12,7 @@ import Input from '../../../components/Input_Unform';
 import InputMask from '../../../components/InputMask_Unform';
 import Picker from '../../../components/Picker_Unform';
 import { useAuth } from '../../../hooks/auth';
+import api from '../../../services/api';
 import { AppStackParams } from '../../app.routes';
 import { styles } from './styles';
 
@@ -27,7 +28,7 @@ type FormData = {
   /**
    * Tipo de sangue
    */
-  bloodType?: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-";
+  blood_type?: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-";
   /**
    * E-mail
    */
@@ -39,7 +40,7 @@ type FormData = {
   /**
    * Data de Nascimento
    */
-  birthDate: string;
+  birth_date: string;
   /**
    * Senha
    */
@@ -88,13 +89,25 @@ const UpdateProfile: React.FC<UpdateProfileProps> = ({ navigation }) => {
 
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit: SubmitHandler<FormData> = (data) => {
-    if (!data.gender || !data.bloodType) {
+  const handleSubmit: SubmitHandler<FormData> = async (data) => {
+    if (!data.gender || !data.blood_type) {
       Alert.alert(`${!data.gender ? "Sexo" : "Tipo de Sanguíneo"} obrigatório`);
       return;
     }
 
-    navigation.navigate("Main");
+    try {
+      //const {birth_date, ...rest} = data
+      console.log(data);
+      await api.post("user/users", data);
+
+      Alert.alert("Conta atualizada com sucesso.");
+
+      navigation.navigate("Main");
+    } catch (error: any) {
+      Alert.alert(
+        error.response.data.message || "Não foi possivel conectar ao servidor."
+      );
+    }
   };
   const selectBloodType = [
     { label: "A+", value: "A+" },
@@ -152,28 +165,55 @@ const UpdateProfile: React.FC<UpdateProfileProps> = ({ navigation }) => {
           Atualizar Perfil
         </Text>
         <FormComponent ref={formRef} onSubmit={handleSubmit}>
-          <Input label="Nome Completo" name="name" />
-          <Picker items={gender} label="Sexo" name="gender" />
+          <Input label="Nome Completo" name="name" value={user.name} />
+          <Picker
+            items={gender}
+            label="Sexo"
+            name="gender"
+            value={user.gender}
+          />
           <Picker
             items={selectBloodType}
             label="Tipo Sanguíneo"
-            name="bloodType"
+            name="blood_type"
+            value={user.blood_type}
           />
-          <Input label="E-mail" type="email" name="email" />
+          <Input label="E-mail" type="email" name="email" value={user.email} />
 
-          <InputMask type="cpf" name="cpf" label="CPF" />
-          <InputMask
+          <InputMask type="cpf" name="cpf" label="CPF" value={user.cpf} />
+          {/* <InputMask
             type="datetime"
             label="Data de Nascimento"
             name="birthDate"
+          /> */}
+          <Input name="street" label="Rua" value={user.address.street} />
+          <Input name="number" label="Número" value={user.address.number} />
+          <Input
+            name="complement"
+            label="Complemento"
+            value={user.address.complement}
           />
-          <InputMask label="CEP" type="zip-code" name="zip_code" />
-          <Input label="Senha" type="password" name="password" />
+          <Input name="district" label="Bairro" value={user.address.district} />
+          <Input name="city" label="Cidade" value={user.address.city} />
+          <Input name="state" label="Estado" value={user.address.state} />
+          <InputMask
+            label="CEP"
+            type="zip-code"
+            name="zip_code"
+            value={user.address.zip_code}
+          />
+          {/* <Input
+            label="Senha"
+            type="password"
+            name="password"
+            value={user.password}
+          />
           <Input
             label="Confirmação de Senha"
             type="password"
             name="confirmPassword"
-          />
+            value={user.password}
+          /> */}
           <View style={{ marginVertical: 10 }}>
             <Button
               title="Atualizar Perfil"
