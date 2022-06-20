@@ -1,36 +1,44 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { Card as CardElement } from "react-native-elements";
-import { styles } from "./styles";
-import { MaterialIcons } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { Feather, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { format } from 'date-fns';
+import React, { useEffect, useState } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { Card as CardElement } from 'react-native-elements';
+
+import { styles } from './styles';
 
 type CardProps = {
   type?: "notification" | "location" | "request";
   data?: Data;
-  remove?: Function;
+  onDelete?: () => void;
+  onEdit?: () => void;
 };
 
 type Data = {
-  bloodType: string;
-  bloodBank: string;
+  blood_type: string;
+  receiver: string;
+  start_date: string;
+  end_date: string;
+  blood_bank_id: string;
+  blood_bank: BloodBankProps;
+};
+
+type BloodBankProps = {
   name: string;
-  startDate: string;
-  finalDate: string;
 };
 
 export default function Card({
   type = "location",
   data = {
-    bloodType: "",
-    bloodBank: "",
-    name: "",
-    startDate: "",
-    finalDate: "",
+    blood_type: "",
+    blood_bank_id: "",
+    receiver: "",
+    start_date: "",
+    end_date: "",
+    blood_bank: { name: "" },
   },
-  remove,
+  onDelete,
+  onEdit,
 }: CardProps) {
   const navigation = useNavigation();
   const renderView = () => {
@@ -50,31 +58,38 @@ export default function Card({
         );
         break;
       case "request":
+        const [startDate, setStartDate] = useState("");
+        const [endDate, setEndDate] = useState("");
+        useEffect(() => {
+          async function loadDateValues() {
+            let date = format(new Date(data.start_date), "dd/MM/Y");
+            setStartDate(date);
+            date = format(new Date(data.end_date), "dd/MM/Y");
+            setEndDate(date);
+          }
+
+          loadDateValues();
+        }, []);
         return (
           <View style={styles.RequestCard}>
             <View>
               <View style={styles.RequestIcon}>
-                <TouchableOpacity
-                  style={{ paddingRight: 15 }}
-                  onPress={() => {
-                    navigation.navigate("DonateRequest", data);
-                  }}
-                >
+                <TouchableOpacity style={{ paddingRight: 15 }} onPress={onEdit}>
                   <Feather name="edit" size={20} color="#D3455B" />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={remove}>
+                <TouchableOpacity onPress={() => onDelete}>
                   <FontAwesome5 name="trash" size={20} color="#D3455B" />
                 </TouchableOpacity>
               </View>
               <Text style={styles.Request}>
-                Tipo Sanguíneo: {data.bloodType}
+                Tipo Sanguíneo: {data.blood_type}
               </Text>
-              <Text style={styles.Request}>Receptor: {data.name}</Text>
+              <Text style={styles.Request}>Receptor: {data.receiver}</Text>
               <Text style={styles.Request}>
-                Banco de Sangue: {data.bloodBank}
+                Banco de Sangue: {data.blood_bank.name}
               </Text>
-              <Text style={styles.Request}>Data Inicial: {data.startDate}</Text>
-              <Text style={styles.Request}>Data Final: {data.finalDate}</Text>
+              <Text style={styles.Request}>Data Inicial: {startDate}</Text>
+              <Text style={styles.Request}>Data Final: {endDate}</Text>
             </View>
           </View>
         );

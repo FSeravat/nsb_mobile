@@ -1,7 +1,7 @@
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Switch } from '@rneui/themed';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { Divider, Text } from 'react-native-elements';
 
@@ -17,7 +17,6 @@ type MainProps = NativeStackScreenProps<AppStackParams, "Main">;
 
 const Main: React.FC<MainProps> = ({ navigation }) => {
   const [able, setAble] = useState(true);
-
   const { user, signOut } = useAuth();
 
   const toUpdateScreen = () => {

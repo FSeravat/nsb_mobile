@@ -1,11 +1,15 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Divider, Text } from 'react-native-elements';
 
 import ArrowBack from '../../../components/BackButton';
+import { AppStackParams } from '../../app.routes';
 import { styles } from './styles';
 
-export default function Notification({ navigation }) {
+type NotificationProps = NativeStackScreenProps<AppStackParams, "Notification">;
+
+const Notification: React.FC<NotificationProps> = ({ navigation }) => {
   const data = {
     bloodType: "O+",
     bloodBank: "HEMOBA",
@@ -62,4 +66,5 @@ export default function Notification({ navigation }) {
       </View>
     </View>
   );
-}
+};
+export default Notification;

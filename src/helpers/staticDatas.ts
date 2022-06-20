@@ -14,3 +14,8 @@ export const genders = [
   { label: "Masculino", value: "m" },
   { label: "Feminino", value: "f" },
 ];
+
+export const bloodBanks = [
+  { label: "Hemoba", value: "Hemoba" },
+  { label: "STS", value: "STS" },
+];

@@ -23,7 +23,7 @@ interface FormData {
   end_date: string;
 }
 
-type DonateRequestProps = NativeStackScreenProps<
+type EditDonateRequestProps = NativeStackScreenProps<
   AppStackParams,
   "DonateRequest"
 >;
@@ -40,7 +40,10 @@ type SelectBloodBankProps = {
   value: string;
 };
 
-const DonateRequest: React.FC<DonateRequestProps> = ({ route, navigation }) => {
+const EditDonateRequest: React.FC<EditDonateRequestProps> = ({
+  route,
+  navigation,
+}) => {
   const [selectBloodBank, setSelectBloodBank] = useState<
     SelectBloodBankProps[]
   >([]);
@@ -105,4 +108,4 @@ const DonateRequest: React.FC<DonateRequestProps> = ({ route, navigation }) => {
   );
 };
 
-export default DonateRequest;
+export default EditDonateRequest;

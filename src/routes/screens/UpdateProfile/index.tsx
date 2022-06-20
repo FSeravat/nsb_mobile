@@ -11,6 +11,7 @@ import Button from '../../../components/Button';
 import Input from '../../../components/Input_Unform';
 import InputMask from '../../../components/InputMask_Unform';
 import Picker from '../../../components/Picker_Unform';
+import { bloodTypes, genders } from '../../../helpers/staticDatas';
 import { useAuth } from '../../../hooks/auth';
 import api from '../../../services/api';
 import { AppStackParams } from '../../app.routes';
@@ -85,7 +86,7 @@ type UpdateProfileProps = NativeStackScreenProps<
 >;
 
 const UpdateProfile: React.FC<UpdateProfileProps> = ({ navigation }) => {
-  const { user, signOut } = useAuth();
+  const { user, signOut, setUser } = useAuth();
 
   const formRef = useRef<FormHandles>(null);
 
@@ -96,10 +97,8 @@ const UpdateProfile: React.FC<UpdateProfileProps> = ({ navigation }) => {
     }
 
     try {
-      //const {birth_date, ...rest} = data
-      console.log(data);
-      await api.post("user/users", data);
-
+      const response = await api.put("user/users", data);
+      setUser(response.data);
       Alert.alert("Conta atualizada com sucesso.");
 
       navigation.navigate("Main");
@@ -109,21 +108,6 @@ const UpdateProfile: React.FC<UpdateProfileProps> = ({ navigation }) => {
       );
     }
   };
-  const selectBloodType = [
-    { label: "A+", value: "A+" },
-    { label: "A-", value: "A-" },
-    { label: "B+", value: "B+" },
-    { label: "B-", value: "B-" },
-    { label: "AB+", value: "AB+" },
-    { label: "AB-", value: "AB-" },
-    { label: "O+", value: "O+" },
-    { label: "O-", value: "O-" },
-  ].map((item) => ({ ...item, key: item.value }));
-
-  const gender = [
-    { label: "Masculino", value: "m" },
-    { label: "Feminino", value: "f" },
-  ].map((item) => ({ ...item, key: item.value }));
 
   return (
     <View style={styles.container}>
@@ -164,56 +148,38 @@ const UpdateProfile: React.FC<UpdateProfileProps> = ({ navigation }) => {
         >
           Atualizar Perfil
         </Text>
-        <FormComponent ref={formRef} onSubmit={handleSubmit}>
-          <Input label="Nome Completo" name="name" value={user.name} />
-          <Picker
-            items={gender}
-            label="Sexo"
-            name="gender"
-            value={user.gender}
-          />
-          <Picker
-            items={selectBloodType}
-            label="Tipo Sanguíneo"
-            name="blood_type"
-            value={user.blood_type}
-          />
-          <Input label="E-mail" type="email" name="email" value={user.email} />
+        <FormComponent
+          initialData={{
+            ...user,
+            street: user.address.street,
+            number: user.address.number,
+            complement: user.address.complement,
+            district: user.address.district,
+            city: user.address.city,
+            state: user.address.state,
+            zip_code: user.address.zip_code,
+          }}
+          ref={formRef}
+          onSubmit={handleSubmit}
+        >
+          <Input label="Nome Completo" name="name" />
+          <Picker items={genders} label="Sexo" name="gender" />
+          <Picker items={bloodTypes} label="Tipo Sanguíneo" name="blood_type" />
+          <Input label="E-mail" type="email" name="email" />
 
-          <InputMask type="cpf" name="cpf" label="CPF" value={user.cpf} />
+          <InputMask type="cpf" name="cpf" label="CPF" />
           {/* <InputMask
             type="datetime"
             label="Data de Nascimento"
             name="birthDate"
           /> */}
-          <Input name="street" label="Rua" value={user.address.street} />
-          <Input name="number" label="Número" value={user.address.number} />
-          <Input
-            name="complement"
-            label="Complemento"
-            value={user.address.complement}
-          />
-          <Input name="district" label="Bairro" value={user.address.district} />
-          <Input name="city" label="Cidade" value={user.address.city} />
-          <Input name="state" label="Estado" value={user.address.state} />
-          <InputMask
-            label="CEP"
-            type="zip-code"
-            name="zip_code"
-            value={user.address.zip_code}
-          />
-          {/* <Input
-            label="Senha"
-            type="password"
-            name="password"
-            value={user.password}
-          />
-          <Input
-            label="Confirmação de Senha"
-            type="password"
-            name="confirmPassword"
-            value={user.password}
-          /> */}
+          <Input name="street" label="Rua" />
+          <Input name="number" label="Número" />
+          <Input name="complement" label="Complemento" />
+          <Input name="district" label="Bairro" />
+          <Input name="city" label="Cidade" />
+          <Input name="state" label="Estado" />
+          <InputMask label="CEP" type="zip-code" name="zip_code" />
           <View style={{ marginVertical: 10 }}>
             <Button
               title="Atualizar Perfil"

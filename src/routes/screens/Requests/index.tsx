@@ -1,54 +1,77 @@
-import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Alert, ScrollView, View } from 'react-native';
 
 import ArrowBack from '../../../components/BackButton';
 import Button from '../../../components/Button';
 import Card from '../../../components/Card';
+import api from '../../../services/api';
+import { AppStackParams } from '../../app.routes';
 import { styles } from './styles';
 
-export default function Resquests({ navigation }) {
+type RequestsProps = NativeStackScreenProps<AppStackParams, "Requests">;
+
+type NotificationProps = {
+  id: string;
+  receiver: string;
+  blood_type: string;
+  blood_bank_id: string;
+  start_date: string;
+  end_date: string;
+  blood_bank: BloodBankProps;
+};
+
+type BloodBankProps = {
+  name: string;
+};
+
+const Requests: React.FC<RequestsProps> = ({ navigation }) => {
+  const [notifications, setNotifications] = useState<NotificationProps[]>([]);
+  const isFocused = useIsFocused();
+
   const toDonateRequest = () => {
     navigation.navigate("DonateRequest");
   };
-  const [requests, setRequests] = useState([
-    {
-      bloodType: "O+",
-      name: "Joelber Santos",
-      bloodBank: "Hemoba",
-      startDate: "23/05/2022",
-      finalDate: "23/06/2022",
-    },
-    {
-      bloodType: "A+",
-      name: "Jessica Melhor",
-      bloodBank: "Hemoba",
-      startDate: "23/05/2022",
-      finalDate: "23/06/2022",
-    },
-    {
-      bloodType: "B+",
-      name: "Diego Lincoln",
-      bloodBank: "Hemoba",
-      startDate: "23/05/2022",
-      finalDate: "23/06/2022",
-    },
-  ]);
+
+  useEffect(() => {
+    async function loadNotifications() {
+      const response = await api.get<NotificationProps[]>("user/notifications");
+      setNotifications(response.data);
+    }
+
+    if (isFocused) loadNotifications();
+  }, [isFocused]);
+
+  const handleDelete = useCallback((id: string) => {
+    try {
+      Alert.alert("Excluir Notificação", "Deseja excluir a notificação", [
+        {
+          text: "Não",
+          style: "cancel",
+        },
+        {
+          text: "Sim",
+          onPress: async () => await api.delete("user/notifications/" + id),
+        },
+      ]);
+    } catch (error) {
+      Alert.alert("Não foi possível deletar a notificação.");
+    }
+  }, []);
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <ArrowBack />
-        {requests.map((a, i) => {
+        {notifications.map((a, i) => {
           return (
             <Card
-              key={i}
+              key={a.id}
               type="request"
               data={a}
-              remove={() => {
-                let newArr = Array.from(requests);
-                newArr.splice(i, 1);
-                setRequests(newArr);
-              }}
+              onEdit={() => navigation.navigate("EditDonateRequest")}
+              onDelete={() => handleDelete(a.id)}
             ></Card>
           );
         })}
@@ -56,4 +79,5 @@ export default function Resquests({ navigation }) {
       <Button title="Nova solicitação" onPress={toDonateRequest} />
     </View>
   );
-}
+};
+export default Requests;

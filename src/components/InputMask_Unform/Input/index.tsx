@@ -9,6 +9,7 @@ export type InputProps = TextInputProps & {
   label: string;
   type?: "text" | "email" | "password" | "cpf" | "data" | "cep";
   rawText?: string;
+  onInitialData?: any;
 };
 
 interface InputReference extends TextInput {
@@ -27,6 +28,7 @@ export default function Input({
   name,
   label,
   onChangeText,
+  onInitialData,
   ...rest
 }: InputProps) {
   const inputRef = useRef<InputReference>(null);
@@ -36,6 +38,10 @@ export default function Input({
   useEffect(() => {
     if (inputRef.current) inputRef.current.value = defaultValue;
   }, [defaultValue]);
+
+  useEffect(() => {
+    if (onInitialData) onInitialData(defaultValue);
+  }, [defaultValue, onInitialData]);
 
   useEffect(() => {
     registerField<string>({
