@@ -52,7 +52,13 @@ const Requests: React.FC<RequestsProps> = ({ navigation }) => {
         },
         {
           text: "Sim",
-          onPress: async () => await api.delete("user/notifications/" + id),
+          onPress: async () => {
+            await api.delete("user/notifications/" + id);
+            const response = await api.get<NotificationProps[]>(
+              "user/notifications"
+            );
+            setNotifications(response.data);
+          },
         },
       ]);
     } catch (error) {

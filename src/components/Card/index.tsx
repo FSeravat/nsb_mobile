@@ -77,7 +77,7 @@ export default function Card({
                 <TouchableOpacity style={{ paddingRight: 15 }} onPress={onEdit}>
                   <Feather name="edit" size={20} color="#D3455B" />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => onDelete}>
+                <TouchableOpacity onPress={onDelete}>
                   <FontAwesome5 name="trash" size={20} color="#D3455B" />
                 </TouchableOpacity>
               </View>
