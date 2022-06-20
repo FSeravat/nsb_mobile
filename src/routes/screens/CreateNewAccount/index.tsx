@@ -93,7 +93,7 @@ const CreateNewAccount: React.FC<CreateNewAccountProps> = ({ navigation }) => {
 
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
     if (!data.gender || !data.blood_type) {
-      Alert.alert(`${!data.gender ? "Sexo" : "Tipo de Sanguíneo"} obrigatório`);
+      Alert.alert(`${!data.gender ? "Sexo" : "Tipo Sanguíneo"} obrigatório`);
       return;
     }
 
@@ -112,7 +112,7 @@ const CreateNewAccount: React.FC<CreateNewAccountProps> = ({ navigation }) => {
       navigation.navigate("Login");
     } catch (error: any) {
       Alert.alert(
-        error.response.data.message || "Não foi possivel conectar ao servidor"
+        error.response.data.message || "Não foi possÍvel conectar ao servidor"
       );
     }
   };
@@ -135,16 +135,11 @@ const CreateNewAccount: React.FC<CreateNewAccountProps> = ({ navigation }) => {
           Criar Uma Nova Conta
         </Text>
         <FormComponent ref={formRef} onSubmit={handleSubmit}>
-          <Input name="name" label="Nome Completo" />
+          <Input name="name" label="Nome completo" />
           <Picker name="gender" label="Sexo" items={genders} />
           <Picker name="blood_type" label="Tipo sanguíneo" items={bloodTypes} />
           <Input name="email" label="E-mail" type="email" />
           <InputMask name="cpf" label="CPF" type="cpf" />
-          {/* <InputMask
-            name="birth_date"
-            label="Data de Nascimento"
-            type="datetime"
-          /> */}
           <Input name="street" label="Rua" />
           <Input name="number" label="Número" />
           <Input name="complement" label="Complemento" />
@@ -155,7 +150,7 @@ const CreateNewAccount: React.FC<CreateNewAccountProps> = ({ navigation }) => {
           <Input name="password" label="Senha" type="password" />
           <Input
             name="confirm_password"
-            label="Confirmação de Senha"
+            label="Confirmação de senha"
             type="password"
           />
           <CheckBox
