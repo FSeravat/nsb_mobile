@@ -98,13 +98,15 @@ const UpdateProfile: React.FC<UpdateProfileProps> = ({ navigation }) => {
 
     try {
       const response = await api.put("user/users", data);
+
       setUser(response.data);
+
       Alert.alert("Conta atualizada com sucesso.");
 
       navigation.navigate("Main");
     } catch (error: any) {
       Alert.alert(
-        error.response.data.message || "Não foi possivel conectar ao servidor."
+        error.response.data.message || "Não foi possível conectar ao servidor."
       );
     }
   };
@@ -146,7 +148,7 @@ const UpdateProfile: React.FC<UpdateProfileProps> = ({ navigation }) => {
           }}
           h4
         >
-          Atualizar Perfil
+          Atualizar perfil
         </Text>
         <FormComponent
           initialData={{
@@ -162,17 +164,12 @@ const UpdateProfile: React.FC<UpdateProfileProps> = ({ navigation }) => {
           ref={formRef}
           onSubmit={handleSubmit}
         >
-          <Input label="Nome Completo" name="name" />
+          <Input label="Nome completo" name="name" />
           <Picker items={genders} label="Sexo" name="gender" />
-          <Picker items={bloodTypes} label="Tipo Sanguíneo" name="blood_type" />
+          <Picker items={bloodTypes} label="Tipo sanguíneo" name="blood_type" />
           <Input label="E-mail" type="email" name="email" />
 
           <InputMask type="cpf" name="cpf" label="CPF" />
-          {/* <InputMask
-            type="datetime"
-            label="Data de Nascimento"
-            name="birthDate"
-          /> */}
           <Input name="street" label="Rua" />
           <Input name="number" label="Número" />
           <Input name="complement" label="Complemento" />
@@ -182,7 +179,7 @@ const UpdateProfile: React.FC<UpdateProfileProps> = ({ navigation }) => {
           <InputMask label="CEP" type="zip-code" name="zip_code" />
           <View style={{ marginVertical: 10 }}>
             <Button
-              title="Atualizar Perfil"
+              title="Atualizar perfil"
               onPress={() => formRef.current?.submitForm()}
             />
           </View>

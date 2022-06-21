@@ -47,7 +47,9 @@ const EditDonateRequest: React.FC<EditDonateRequestProps> = ({
   const [selectBloodBank, setSelectBloodBank] = useState<
     SelectBloodBankProps[]
   >([]);
+
   const formRef = useRef<FormHandles>(null);
+
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       await api.put("user/notifications/" + route.params.id, data);
@@ -59,6 +61,7 @@ const EditDonateRequest: React.FC<EditDonateRequestProps> = ({
       );
     }
   };
+
   useEffect(() => {
     async function loadBloodBank() {
       var response = await api.get<BloodBankProps[]>("user/blood-banks");
@@ -70,6 +73,7 @@ const EditDonateRequest: React.FC<EditDonateRequestProps> = ({
 
     loadBloodBank();
   }, []);
+
   return (
     <View style={styles.container}>
       <ArrowBack />

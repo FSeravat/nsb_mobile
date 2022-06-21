@@ -11,29 +11,29 @@ const data = [
   {
     title: "1",
     image: image1,
-    text: "Bem vindos ao NSB - Nosso Sangue Bom, um app destinado a aproximar pessoas com intuito de desenvolver a pratica de Doação de Sangue e cuidados com a saúde",
+    text: "Bem vindos ao NSB - Nosso Sangue Bom, um app destinado a aproximar pessoas com intuito de desenvolver a prática de doação de sangue e cuidados com a saúde.",
   },
   {
     title: "2",
     image: image1,
-    text: "Esse canal é exclusivo para reunir doadores comprometidos com a vida! Solicite doações de sangue e se cadastre para fazer parte desse pacto pela vida.",
+    text: "Esse canal é exclusivo para reunir doadores comprometidos com a vida! Solicite doações de sangue e cadastre-se para fazer parte desse pacto pela vida.",
   },
   {
     title: "3",
     image: image1,
-    text: "Aqui você pode solicitar sangue para pessoas que precisam receber doação de sangue, plaquetas ou hemácias",
+    text: "Aqui você pode solicitar sangue para pessoas que precisam receber doação de sangue, plaquetas ou hemácias.",
   },
   {
     title: "4",
     image: image1,
-    text: "Um Gesto simples pode salvar muitas vidas!! Obrigada por fazer parte desse movimento!! Vamos lá!",
+    text: "Um gesto simples pode salvar muitas vidas. Obrigado por fazer parte desse movimento! Vamos lá!",
   },
 ];
 
 type Item = typeof data[0];
 
-export default class App extends React.Component {
-  slider: AppIntroSlider | undefined;
+export default class App extends React.Component<{ navigation: any }> {
+  slider!: AppIntroSlider | null;
 
   nextSlide = () => {
     this.slider?.goToSlide(this.slider?.state.activeIndex + 1, true);

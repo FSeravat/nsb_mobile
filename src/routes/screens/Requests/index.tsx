@@ -40,7 +40,9 @@ const Requests: React.FC<RequestsProps> = ({ navigation }) => {
       setNotifications(response.data);
     }
 
-    if (isFocused) loadNotifications();
+    if (isFocused) {
+      loadNotifications();
+    }
   }, [isFocused]);
 
   const handleDelete = useCallback((id: string) => {

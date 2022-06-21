@@ -11,8 +11,8 @@ import { styles } from './styles';
 type NotificationProps = NativeStackScreenProps<AppStackParams, "Notification">;
 
 const Notification: React.FC<NotificationProps> = ({ navigation, route }) => {
-  console.log(route.params);
   const { ...notification } = route.params;
+
   return (
     <View style={styles.container}>
       <View style={{ marginBottom: 15 }}>

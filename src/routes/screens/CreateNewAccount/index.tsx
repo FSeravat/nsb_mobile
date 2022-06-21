@@ -93,7 +93,7 @@ const CreateNewAccount: React.FC<CreateNewAccountProps> = ({ navigation }) => {
 
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
     if (!data.gender || !data.blood_type) {
-      Alert.alert(`${!data.gender ? "Sexo" : "Tipo Sanguíneo"} obrigatório`);
+      Alert.alert(`${!data.gender ? "Sexo" : "Tipo sanguíneo"} obrigatório`);
       return;
     }
 
@@ -112,10 +112,11 @@ const CreateNewAccount: React.FC<CreateNewAccountProps> = ({ navigation }) => {
       navigation.navigate("Login");
     } catch (error: any) {
       Alert.alert(
-        error.response.data.message || "Não foi possÍvel conectar ao servidor"
+        error.response.data.message || "Não foi possível conectar ao servidor"
       );
     }
   };
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -132,7 +133,7 @@ const CreateNewAccount: React.FC<CreateNewAccountProps> = ({ navigation }) => {
           }}
           h4
         >
-          Criar Uma Nova Conta
+          Criar uma nova conta
         </Text>
         <FormComponent ref={formRef} onSubmit={handleSubmit}>
           <Input name="name" label="Nome completo" />

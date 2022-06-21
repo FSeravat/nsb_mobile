@@ -1,11 +1,19 @@
 <!--- Badges --->
+
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/FSeravat/nsb_mobile)
 
 <!--- Body --->
 
 # Nosso Sangue Bom
 
-### Final Project for the Associate's degree of System Development in SENAI CIMATEC Salvador - BA   test
+### Final Project for the Associate's degree of System Development in SENAI CIMATEC Salvador - BA test
+
+# Como usar
+
+1. Instale as dependências usando o comando `npm install`
+2. Altere a baseUrl no arquivo `./src/services/api.ts` na linha 6 para o endereço da API
+3. Execute o comando `expo start`
+4. Baixo aplicativo Expo Go disponível na PlayStore ou AppStore e o use para escanear o QRCode
 
 ## 🤝 Our team
 

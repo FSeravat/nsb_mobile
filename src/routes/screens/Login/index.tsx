@@ -50,7 +50,7 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
         width={undefined}
       />
       <FormComponent ref={formRef} onSubmit={handleSubmit}>
-        <Input name="email" label="E-Mail" type="email" />
+        <Input name="email" label="E-mail" type="email" />
         <Input name="password" label="Senha" type="password" />
         <View style={{ marginVertical: 10 }}>
           <Button

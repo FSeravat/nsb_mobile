@@ -44,11 +44,15 @@ const DonateRequest: React.FC<DonateRequestProps> = ({ route, navigation }) => {
   const [selectBloodBank, setSelectBloodBank] = useState<
     SelectBloodBankProps[]
   >([]);
+
   const formRef = useRef<FormHandles>(null);
+
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       await api.post("user/notifications", data);
+
       Alert.alert("Notificação criada com sucesso");
+
       navigation.navigate("Requests");
     } catch (error: any) {
       Alert.alert(

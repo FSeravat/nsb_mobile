@@ -51,9 +51,11 @@ const Main: React.FC<MainProps> = ({ navigation }) => {
   const toUpdateScreen = () => {
     navigation.navigate("UpdateProfile");
   };
+
   const toRequests = () => {
     navigation.navigate("Requests");
   };
+
   useEffect(() => {
     async function loadNotifications() {
       const response = await api.get<NotificationProps[]>(
@@ -62,8 +64,11 @@ const Main: React.FC<MainProps> = ({ navigation }) => {
       setNotifications(response.data);
     }
 
-    if (isFocused) loadNotifications();
+    if (isFocused) {
+      loadNotifications();
+    }
   }, [isFocused]);
+
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <View style={styles.header}>
@@ -119,7 +124,7 @@ const Main: React.FC<MainProps> = ({ navigation }) => {
               paddingLeft: 5,
             }}
           >
-            Tipo Sanguíneo
+            Tipo sanguíneo
           </Text>
           <Text
             style={{
@@ -137,7 +142,7 @@ const Main: React.FC<MainProps> = ({ navigation }) => {
       <View>
         <View style={styles.switchContainer}>
           <Text style={{ color: "#293845", fontSize: 20 }}>
-            Está disponivel para doar?
+            Está disponível para doar?
           </Text>
           <Switch
             color="#D3455B"
@@ -147,7 +152,7 @@ const Main: React.FC<MainProps> = ({ navigation }) => {
         </View>
         <View style={{ paddingHorizontal: 25 }}>
           <Text style={{ color: "#293845", fontSize: 20 }}>
-            Ultimas notícias
+            Últimas notícias
           </Text>
           <Divider
             orientation="vertical"
