@@ -52,7 +52,7 @@ const DonateRequest: React.FC<DonateRequestProps> = ({ route, navigation }) => {
       navigation.navigate("Requests");
     } catch (error: any) {
       Alert.alert(
-        error.response.data.message || "Não foi possivel conectar ao servidor"
+        error.response.data.message || "Não foi possível conectar ao servidor"
       );
     }
   };
@@ -92,8 +92,8 @@ const DonateRequest: React.FC<DonateRequestProps> = ({ route, navigation }) => {
           items={selectBloodBank}
           label="Banco de sangue"
         />
-        <InputMask name="start_date" label="Data Inicial" type="datetime" />
-        <InputMask name="end_date" label="Data Final" type="datetime" />
+        <InputMask name="start_date" label="Data inicial" type="datetime" />
+        <InputMask name="end_date" label="Data final" type="datetime" />
         <View style={{ marginVertical: 10 }}>
           <Button
             title="Enviar notificação"

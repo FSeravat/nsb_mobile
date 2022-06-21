@@ -1,5 +1,4 @@
 import { Feather, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
@@ -40,7 +39,6 @@ export default function Card({
   onDelete,
   onEdit,
 }: CardProps) {
-  const navigation = useNavigation();
   const renderView = () => {
     switch (type) {
       case "location":

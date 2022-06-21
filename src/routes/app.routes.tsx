@@ -12,8 +12,42 @@ export type AppStackParams = {
   UpdateProfile: undefined;
   DonateRequest: undefined;
   Requests: undefined;
-  Notification: undefined;
-  EditDonateRequest: undefined;
+  Notification: NotificationProps;
+  EditDonateRequest: EditDonateRequestProps;
+};
+
+type EditDonateRequestProps = {
+  id: string;
+  receiver: string;
+  blood_type: string;
+  blood_bank_id: string;
+  start_date: string;
+  end_date: string;
+};
+
+type NotificationProps = {
+  id: string;
+  receiver: string;
+  blood_type: string;
+  blood_bank_id: string;
+  start_date: string;
+  end_date: string;
+  blood_bank: BloodBankProps;
+};
+
+type BloodBankProps = {
+  name: string;
+  address: AdressProps;
+};
+
+type AdressProps = {
+  city: string;
+  complement: string;
+  district: string;
+  number: string;
+  state: string;
+  street: string;
+  zip_code: string;
 };
 
 const App = createNativeStackNavigator<AppStackParams>();

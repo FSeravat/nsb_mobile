@@ -10,15 +10,17 @@ const defaultImage = require("../../images/logo.jpg");
 type NotificationProps = {
   image?: any;
   description?: String;
+  navigateTo?: () => void;
 };
 
 export default function Notification({
   image = defaultImage,
   description = "Into pede ajuda para elevar número de doadores de sangue.",
+  navigateTo,
 }: NotificationProps) {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("Notification")}>
+    <TouchableOpacity onPress={navigateTo}>
       <View style={styles.container}>
         <Image
           source={image}

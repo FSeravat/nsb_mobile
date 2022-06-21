@@ -25,7 +25,7 @@ interface FormData {
 
 type EditDonateRequestProps = NativeStackScreenProps<
   AppStackParams,
-  "DonateRequest"
+  "EditDonateRequest"
 >;
 
 type BloodBankProps = {
@@ -50,16 +50,15 @@ const EditDonateRequest: React.FC<EditDonateRequestProps> = ({
   const formRef = useRef<FormHandles>(null);
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      await api.post("user/notifications", data);
-      Alert.alert("Notificação criada com sucesso");
+      await api.put("user/notifications/" + route.params.id, data);
+      Alert.alert("Notificação atualizada com sucesso");
       navigation.navigate("Requests");
     } catch (error: any) {
       Alert.alert(
-        error.response.data.message || "Não foi possivel conectar ao servidor"
+        error.response.data.message || "Não foi possível conectar ao servidor"
       );
     }
   };
-
   useEffect(() => {
     async function loadBloodBank() {
       var response = await api.get<BloodBankProps[]>("user/blood-banks");
@@ -71,7 +70,6 @@ const EditDonateRequest: React.FC<EditDonateRequestProps> = ({
 
     loadBloodBank();
   }, []);
-
   return (
     <View style={styles.container}>
       <ArrowBack />
@@ -85,9 +83,19 @@ const EditDonateRequest: React.FC<EditDonateRequestProps> = ({
         }}
         h4
       >
-        Solicitar doação
+        Editar solicitação
       </Text>
-      <FormComponent ref={formRef} onSubmit={handleSubmit}>
+      <FormComponent
+        ref={formRef}
+        onSubmit={handleSubmit}
+        initialData={{
+          receiver: route.params.receiver,
+          blood_type: route.params.blood_type,
+          start_date: route.params.start_date,
+          blood_bank_id: route.params.blood_bank_id,
+          end_date: route.params.end_date,
+        }}
+      >
         <Input name="receiver" label="Receptor" />
         <Picker name="blood_type" items={bloodTypes} label="Tipo sanguíneo" />
         <Picker
@@ -99,7 +107,7 @@ const EditDonateRequest: React.FC<EditDonateRequestProps> = ({
         <InputMask name="end_date" label="Data Final" type="datetime" />
         <View style={{ marginVertical: 10 }}>
           <Button
-            title="Enviar notificação"
+            title="Editar notificação"
             onPress={() => formRef.current?.submitForm()}
           />
         </View>

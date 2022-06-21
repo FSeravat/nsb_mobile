@@ -1,7 +1,7 @@
 import { useIsFocused } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Alert, ScrollView, View } from 'react-native';
+import { Alert, ScrollView, Text, View } from 'react-native';
 
 import ArrowBack from '../../../components/BackButton';
 import Button from '../../../components/Button';
@@ -70,13 +70,18 @@ const Requests: React.FC<RequestsProps> = ({ navigation }) => {
     <View style={styles.container}>
       <ScrollView>
         <ArrowBack />
+        {notifications.length === 0 && (
+          <Text style={{ alignSelf: "center" }}>
+            Nenhuma notificação cadastrada.
+          </Text>
+        )}
         {notifications.map((a, i) => {
           return (
             <Card
               key={a.id}
               type="request"
               data={a}
-              onEdit={() => navigation.navigate("EditDonateRequest")}
+              onEdit={() => navigation.navigate("EditDonateRequest", a)}
               onDelete={() => handleDelete(a.id)}
             ></Card>
           );

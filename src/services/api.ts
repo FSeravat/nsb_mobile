@@ -4,7 +4,7 @@ import { getToken } from '../utils/token';
 
 const api = axios.create({
   //baseURL: "http://localhost:3333",
-  baseURL: "https://f5bd-168-228-86-127.sa.ngrok.io",
+  baseURL: "https://8799-168-228-86-127.sa.ngrok.io",
 });
 
 api.interceptors.request.use(

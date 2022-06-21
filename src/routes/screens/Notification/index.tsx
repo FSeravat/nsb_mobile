@@ -1,4 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { format } from 'date-fns';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Divider, Text } from 'react-native-elements';
@@ -9,15 +10,9 @@ import { styles } from './styles';
 
 type NotificationProps = NativeStackScreenProps<AppStackParams, "Notification">;
 
-const Notification: React.FC<NotificationProps> = ({ navigation }) => {
-  const data = {
-    bloodType: "O+",
-    bloodBank: "HEMOBA",
-    adress: "LADEIRA DO HOSPITAL GERAL, BROTAS",
-    startDate: "25/05/2022",
-    finalDate: "23/06/2022",
-    name: "JOELBER SANTOS",
-  };
+const Notification: React.FC<NotificationProps> = ({ navigation, route }) => {
+  console.log(route.params);
+  const { ...notification } = route.params;
   return (
     <View style={styles.container}>
       <View style={{ marginBottom: 15 }}>
@@ -28,11 +23,6 @@ const Notification: React.FC<NotificationProps> = ({ navigation }) => {
           <Text style={styles.textHeader}>
             PRECISAMOS DE SANGUE, PRECISAMOS DE VOCÊ.
           </Text>
-          {/* <Image
-            source={require("../../images/blood-sample.jpg")}
-            resizeMode="contain"
-            style={{ height: 100 }}
-          /> */}
           <Divider
             orientation="vertical"
             style={{
@@ -44,14 +34,17 @@ const Notification: React.FC<NotificationProps> = ({ navigation }) => {
         </View>
 
         <View style={styles.containerText}>
-          <Text style={styles.text}>TIPO: {data.bloodType}</Text>
-          <Text style={styles.text}>RECEPTOR: {data.name}</Text>
+          <Text style={styles.text}>TIPO: {notification.blood_type}</Text>
+          <Text style={styles.text}>RECEPTOR: {notification.receiver}</Text>
           <Text style={styles.text}>
-            DATA: {data.startDate} a {data.finalDate}
+            DATA: {format(new Date(notification.start_date), "dd/MM/Y")} a{" "}
+            {format(new Date(notification.end_date), "dd/MM/Y")}
           </Text>
           <Text style={styles.text}>LOCAL DA DOAÇÃO:</Text>
-          <Text style={styles.text}>{data.bloodBank}</Text>
-          <Text style={styles.text}>{data.adress}</Text>
+          <Text style={styles.text}>{notification.blood_bank.name}</Text>
+          <Text style={styles.text}>
+            {notification.blood_bank.address.district}
+          </Text>
 
           <Divider
             orientation="vertical"
